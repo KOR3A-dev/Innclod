@@ -9,7 +9,9 @@
 4. Configurar las variables de entorno en un archivo `.env` basado en `.env.example`
 5. Ejecutar las migraciones de la base de datos: `php artisan migrate`
 6. Ejecutar el seeder de usuario por defecto: `php artisan db:seed --class=DefaultUserSeeder`
-7. Iniciar el servidor local: `php artisan serve`
+7. Ejecutar el seeder de Procesos por defecto: `php artisan db:seed --class=ProcesosSeeder`
+8. Ejecutar el seeder de Tipo docs por defecto: `php artisan db:seed --class=TipoDocSeeder`
+9. Iniciar el servidor local: `php artisan serve`
 
 ### Frontend
 
