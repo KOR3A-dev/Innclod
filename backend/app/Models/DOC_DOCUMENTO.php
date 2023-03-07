@@ -9,6 +9,8 @@ class DOC_DOCUMENTO extends Model
 {
     use HasFactory;
 
+    protected $table = 'doc_documentos';
+
     /**
      * The attributes that are mass assignable.
      *

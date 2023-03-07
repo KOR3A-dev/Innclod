@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('PRO_PREFIJO');
             $table->string('PRO_NOMBRE');
+            $table->timestamps();
         });
     }
 

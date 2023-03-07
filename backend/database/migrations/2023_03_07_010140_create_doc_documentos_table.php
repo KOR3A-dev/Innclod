@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('DOC_CONTENIDO')->length(4000);
             $table->integer('DOC_ID_TIPO');
             $table->integer('DOC_ID_PROCESO');
+            $table->timestamps();
 
             $table->foreign('DOC_ID_TIPO')->references('id')->on('pro_procesos')->onDelete('cascade');
             $table->foreign('DOC_ID_PROCESO')->references('id')->on('tip_tipo_docs')->onDelete('cascade');

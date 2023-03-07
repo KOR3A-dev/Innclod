@@ -9,6 +9,8 @@ class PRO_PROCESO extends Model
 {
     use HasFactory;
 
+    protected $table = 'pro_procesos';
+
     /**
      * The attributes that are mass assignable.
      *

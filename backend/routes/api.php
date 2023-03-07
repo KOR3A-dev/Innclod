@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/* Group Routes for Login and Logout */
+Route::controller(LoginController::class)->group(function () {
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout');
 });
 
-Route::post('/login', 'App\Http\Controllers\LoginController@login');
-Route::post('/logout', 'App\Http\Controllers\LoginController@logout');
+/* Group Routes for Document */
+Route::controller(DocumentoController::class)->group(function () {
+    Route::post('/create/document', 'createDocument');
+    Route::put('/update/document/{id}', 'editDocument');
+});

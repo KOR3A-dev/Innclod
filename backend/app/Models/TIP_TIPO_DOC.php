@@ -9,6 +9,8 @@ class TIP_TIPO_DOC extends Model
 {
     use HasFactory;
 
+    protected $table = 'tip_tipo_docs';
+
     /**
      * The attributes that are mass assignable.
      *

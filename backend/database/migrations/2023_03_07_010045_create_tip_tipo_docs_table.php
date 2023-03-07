@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('TIP_PREFIJO');
             $table->string('TIP_NOMBRE');
+            $table->timestamps();
         });
     }
 
