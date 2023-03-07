@@ -13,6 +13,11 @@
 8. Ejecutar el seeder de Tipo docs por defecto: `php artisan db:seed --class=TipoDocSeeder`
 9. Iniciar el servidor local: `php artisan serve`
 
+### End points
+1.Crear document `api/create/document`
+2.Update document `api/update/document/{id}`
+3.getAll document `api/documents`
+
 ### Frontend
 
 1. Acceder a la carpeta `frontend` del proyecto: `cd repo/frontend`
