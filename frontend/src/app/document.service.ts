@@ -14,4 +14,11 @@ export class DocumentService {
     return this.http.post(`${environment.baseUrl}create/document`, documentData);
   }
 
+  documentsAll() {
+    return this.http.get(`${environment.baseUrl}documents`,);
+  }
+
+  updateDocument(documentDataUpdate: any, id: any) {
+    return this.http.put(`${environment.baseUrl}update/document/${id}`, documentDataUpdate);
+  }
 }

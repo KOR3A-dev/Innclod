@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span>Crear Documento</span>
+  <span>Documento</span>
   <span class="example-spacer"></span>
 </mat-toolbar>
 
@@ -7,46 +7,129 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6">
-        <h2 class="text-center">Nuevo Documento</h2>
-        <mat-card class="text-center">
-          <form [formGroup]="formDocument" (ngSubmit)="submit()" class="my-4">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <input placeholder="Nombre" formControlName="DOC_NOMBRE" id="DOC_NOMBRE" type="text" matInput>
-              <mat-error *ngIf="formDocument.controls['DOC_NOMBRE'].hasError('required')">
-                Este campo es requerido.
-              </mat-error>
-            </mat-form-field> <br>
-            <mat-form-field appearance="fill" class="example-full-width">
-              <textarea placeholder="Contenido" formControlName="DOC_CONTENIDO" id="DOC_CONTENIDO" matInput></textarea>
-              <mat-error *ngIf="formDocument.controls['DOC_CONTENIDO'].hasError('required')">
-                Este campo es requerido.
-              </mat-error>
-            </mat-form-field> <br>
-            <mat-form-field appearance="fill" class="example-full-width">
-              <input placeholder="ID Tipo" formControlName="DOC_ID_TIPO" id="DOC_ID_TIPO" type="text" matInput>
-              <mat-error *ngIf="formDocument.controls['DOC_ID_TIPO'].hasError('required')">
-                Este campo es requerido.
-              </mat-error>
-            </mat-form-field> <br>
-            <mat-form-field appearance="fill" class="example-full-width">
-              <input placeholder="ID Proceso" formControlName="DOC_ID_PROCESO" id="DOC_ID_PROCESO" type="text" matInput>
-              <mat-error *ngIf="formDocument.controls['DOC_ID_PROCESO'].hasError('required')">
-                Este campo es requerido.
-              </mat-error>
-            </mat-form-field> <br>
-      
-            <button mat-fab color="primary" aria-label="Crear Documento">
-              Crear
-            </button>
-          </form>
-        </mat-card>
+    <div class="col-6" *ngIf="formEdit == false; else editForm">
+      <h2 class="text-center">Nuevo Documento</h2>
+      <mat-card class="text-center">
+        <form [formGroup]="formDocument" (ngSubmit)="submit()" class="my-4">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <input placeholder="Nombre" formControlName="DOC_NOMBRE" id="DOC_NOMBRE" type="text" matInput>
+            <mat-error *ngIf="formDocument.controls['DOC_NOMBRE'].hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field> <br>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <textarea placeholder="Contenido" formControlName="DOC_CONTENIDO" id="DOC_CONTENIDO" matInput></textarea>
+            <mat-error *ngIf="formDocument.controls['DOC_CONTENIDO'].hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field> <br>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <input placeholder="ID Tipo" formControlName="DOC_ID_TIPO" id="DOC_ID_TIPO" type="text" matInput>
+            <mat-error *ngIf="formDocument.controls['DOC_ID_TIPO'].hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field> <br>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <input placeholder="ID Proceso" formControlName="DOC_ID_PROCESO" id="DOC_ID_PROCESO" type="text" matInput>
+            <mat-error *ngIf="formDocument.controls['DOC_ID_PROCESO'].hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field> <br>
+    
+          <button mat-fab color="primary" aria-label="Crear Documento">
+            Crear
+          </button>
+        </form>
+      </mat-card>
+    </div>
+
+    <ng-template #editForm>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h2 class="text-center">Edit Documento</h2>
+            <mat-card class="text-center">
+              <form [formGroup]="formDocument" (ngSubmit)="submitEdit()" class="my-4">
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <input placeholder="Nombre" formControlName="DOC_NOMBRE" id="DOC_NOMBRE" type="text" matInput>
+                  <mat-error *ngIf="formDocument.controls['DOC_NOMBRE'].hasError('required')">
+                    Este campo es requerido.
+                  </mat-error>
+                </mat-form-field> <br>
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <textarea placeholder="Contenido" formControlName="DOC_CONTENIDO" id="DOC_CONTENIDO" matInput></textarea>
+                  <mat-error *ngIf="formDocument.controls['DOC_CONTENIDO'].hasError('required')">
+                    Este campo es requerido.
+                  </mat-error>
+                </mat-form-field> <br>
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <input placeholder="ID Tipo" formControlName="DOC_ID_TIPO" id="DOC_ID_TIPO" type="text" matInput>
+                  <mat-error *ngIf="formDocument.controls['DOC_ID_TIPO'].hasError('required')">
+                    Este campo es requerido.
+                  </mat-error>
+                </mat-form-field> <br>
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <input placeholder="ID Proceso" formControlName="DOC_ID_PROCESO" id="DOC_ID_PROCESO" type="text" matInput>
+                  <mat-error *ngIf="formDocument.controls['DOC_ID_PROCESO'].hasError('required')">
+                    Este campo es requerido.
+                  </mat-error>
+                </mat-form-field> <br>
+          
+                <button mat-fab color="primary" aria-label="Crear Documento">
+                  Editar
+                </button>
+              </form>
+            </mat-card> 
+          </div>
+        </div>
       </div>
-      <div class="col-6">
-        <p class="my-5">
-          {{ document | json }}
-        </p>
+    </ng-template>
+
+    <div class="area-text col-6" *ngIf="formEdit == false">
+      <p class="my-5">
+        {{ document | json }}
+      </p>
+      <div class="display-content-center" *ngIf="document != undefined">
+        <button mat-fab color="primary" (click)="activeFormEdit()"> Editar </button>
       </div>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <button class="my-4" mat-raised-button color="primary" (click)="activeViewListDocuments()"> Ver documentos existentes</button>
+        <div *ngIf="viewListDocuments == true">
+          <h2>Tabla de datos</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 text-center">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">DOC_NOMBRE</th>
+                      <th scope="col">DOC_CODIGO</th>
+                      <th scope="col">DOC_CONTENIDO</th>
+                      <th scope="col">DOC_ID_PROCESO</th>
+                      <th scope="col">DOC_ID_TIPO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let document of documents">
+                      <td>{{ document.DOC_NOMBRE}}</td>
+                      <td>{{ document.DOC_CODIGO}}</td>
+                      <td>{{ document.DOC_CONTENIDO}}</td>
+                      <td>{{ document.DOC_ID_PROCESO}}</td>
+                      <td>{{ document.DOC_ID_TIPO}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 

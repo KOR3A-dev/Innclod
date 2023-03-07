@@ -24,6 +24,7 @@ Route::controller(LoginController::class)->group(function () {
 
 /* Group Routes for Document */
 Route::controller(DocumentoController::class)->group(function () {
+    Route::get('documents', 'documentsAll');
     Route::post('/create/document', 'createDocument');
     Route::put('/update/document/{id}', 'editDocument');
 });

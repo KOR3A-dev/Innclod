@@ -11,6 +11,14 @@ use App\Models\PRO_PROCESO;
 class DocumentoController extends Controller
 {
 
+    public function documentsAll(){
+        $documents = DOC_DOCUMENTO::all();
+        return response()->json([
+            'message' => 'Documento all',
+            'documents' => $documents
+        ], 200);
+    }
+
     public function createDocument(Request $request)
     {
         $tipo_doc = TIP_TIPO_DOC::find($request->input('DOC_ID_TIPO'));

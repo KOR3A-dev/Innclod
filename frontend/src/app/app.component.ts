@@ -13,10 +13,15 @@ import { DocumentService } from './document.service';
 export class AppComponent implements OnInit {
 
   document: any
+  documents : any
+  formEdit : boolean = false 
+  viewListDocuments : boolean = false
 
   constructor(private documentService:DocumentService, private _snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getDocumentsAll()
+  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action)
@@ -36,6 +41,37 @@ export class AppComponent implements OnInit {
         this.openSnackBar(response['message'], "OK")
       })
     }
+  }
+
+  activeFormEdit(){
+    this.formEdit = true
+  }
+
+  activeViewListDocuments(){
+    this.viewListDocuments = true
+  }
+
+  submitEdit(){
+    this.formDocument.patchValue({
+      DOC_NOMBRE: this.document.DOC_NOMBRE,
+      DOC_CONTENIDO: this.document.DOC_CONTENIDO,
+      DOC_ID_TIPO: this.document.DOC_ID_TIPO,
+      DOC_ID_PROCESO: this.document.DOC_ID_PROCESO
+    });
+  
+    if (this.formDocument.valid) {
+      this.documentService.updateDocument(this.formDocument.value, this.document.id).subscribe((response : any) =>{
+        console.log(response)
+        this.openSnackBar(response['message'], "OK")
+      })
+    }
+  }
+
+  getDocumentsAll(){
+    this.documentService.documentsAll().subscribe((response : any) =>{
+      this.documents = response.documents
+      console.log(this.documents)
+    })
   }
   
 }
